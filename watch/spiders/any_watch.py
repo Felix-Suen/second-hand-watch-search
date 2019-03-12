@@ -33,7 +33,7 @@ class Any_watch(scrapy.Spider):
                'number of watches': count}
 
         next_page = response.css('.pull-sm-right li:nth-child(' + str(self.page) + ') a::attr(href)').get()
-        if self.page < 6 and next_page:
+        if self.page < 7 and next_page:
             yield response.follow(next_page, callback=self.start_parse)
             self.page += 1
 
