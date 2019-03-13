@@ -3,7 +3,7 @@ from scrapy.http import FormRequest
 
 class Any_watch(scrapy.Spider):
     name = 'Any Watch'
-    start_urls = ['https://www.chrono24.com']
+    start_urls = ['https://www.chrono24.ca']
     page = 3
 
     def parse(self, response):
@@ -28,9 +28,9 @@ class Any_watch(scrapy.Spider):
             count += 1
             sum += price
         avg = sum / count
-        yield {
-               'average price': avg,
-               'number of watches': count}
+        yield {'Price': price_list,
+               'Average price': avg,
+               'Number of watches': count}
 
         next_page = response.css('.pull-sm-right li:nth-child(' + str(self.page) + ') a::attr(href)').get()
         if self.page < 7 and next_page:
